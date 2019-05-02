@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Python Blog Workshop">
+        <meta name="keywords" content="python,html,css,blog">
+        <meta name="author" content="Loai Kanou">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>{{ app_name }}</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='icon.png') }}" type="image/png">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/materialize.min.css') }}" rel="stylesheet">
+    </head>
+    <body>
+        <!-- Page Content goes here -->
+        <header>
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="{{ url_for('home') }}" class="brand-logo center">{{ app_name }}</a>
+                </div>
+            </nav>
+            <div class="fixed-action-btn">
+                <a href="{{ url_for('post_add') }}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+            </div>
+        </header>
+
+        <main class="container">
+            <h4 class="center flow-text">{{ post.name }}</h4>
+            <article>
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <div class="card z-depth-3">
+                            <div class="card-content white-text red lighten-2">
+                                <div class="left">
+                                    <img width="64px" height="64px" src="{{post.photo_url}}" alt="{{post.name}}" class="circle left"> 
+                                </div>
+                                <div>
+                                    <span class="card-title flow-text"> &nbsp;&nbsp;
+                                        {{ post.name }}
+                                        <small style="font-size: 14px;" class="right">{{ post.date }}</small>
+                                    </span>
+                                </div>
+                                <br><br><hr>
+                                <p>{{ post.body }}</p>
+                            </div>
+                            <div class="card-action white">
+                                <div class="row">
+                                    <div class="col s6 m6 l6 center">
+                                        <a class="center-align" href="{{ url_for('post_update', id=post.id) }}"><i class="material-icons">edit</i> Edit</a>
+                                    </div>
+                                    <div class="col s6 m6 l6 center">
+                                        <a class="red-text" href="{{ url_for('post_delete', id=post.id) }}"><i class="material-icons">delete_forever</i> Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+        </div>
+    </body>
+</html>
